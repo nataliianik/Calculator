@@ -1,32 +1,40 @@
 var expressionInput = document.getElementById("Expression");
 var resultLabel = document.getElementById("result");
+expressionInput.addEventListener("keyup", updateResults2);
+result.addEventListener("keyup", updateResults2);
 
-expressionInput.addEventListener("keyup", updateResult);
-result.addEventListener("keyup", updateResult);
-
-function updateResult() {
-
-   var tokens = expressionInput.value.split(' ');
-   //get a sring and parse it
-   var a = parseFloat(tokens[0]);
-   var b = parseFloat(tokens[2]);
-   var operator = tokens[1];
+function updateResults2() {
+   var expression = expressionInput.value;
+   var operatorIndex = -1;
+   var indexOfPlus = expression.indexOf('+')
+   var indexOfMinus = expression.indexOf('-')
+   var indexOfMultiply = expression.indexOf('*')
+   var indexOfDivide = expression.indexOf('/')
    var result;
 
-   if (isNaN(a) || isNaN(b)) {
-      result = `${expressionInput.value}is not a valid expression`;
-   } else {
-      if (operator == '+') {
-         result = a + b;
-      } else if (operator == '-') {
-         result = a - b;
-      } else if (operator == '*') {
-         result = b * a;
-      } else if (operator == '/') {
-         result = a / b;
-      } else {
-         result = `${operator}is not valid operator`;
-      }
+   // for each operator
+   if (indexOfPlus != -1) {
+      operatorIndex = indexOfPlus;
+      var a = parseFloat(expression.substring(0, operatorIndex));
+      var b = parseFloat(expression.substring(operatorIndex + 1));
+      result = a + b;
+
+   } else if (indexOfMinus != -1) {
+      operatorIndex = indexOfMinus;
+      var a = parseFloat(expression.substring(0, operatorIndex));
+      var b = parseFloat(expression.substring(operatorIndex + 1));
+      result = a - b;
+   } else if (indexOfMultiply != -1) {
+      operatorIndex = indexOfMultiply;
+      var a = parseFloat(expression.substring(0, operatorIndex));
+      var b = parseFloat(expression.substring(operatorIndex + 1));
+      result = a * b;
+   } else if (indexOfDivide != -1) {
+      operatorIndex = indexOfDivide;
+      var a = parseFloat(expression.substring(0, operatorIndex));
+      var b = parseFloat(expression.substring(operatorIndex + 1));
+      result = a / b;
    }
+  
    resultLabel.innerHTML = result;
 }
