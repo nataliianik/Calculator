@@ -11,30 +11,45 @@ function updateResults2() {
    var indexOfMultiply = expression.indexOf('*')
    var indexOfDivide = expression.indexOf('/')
    var result;
-
-   // for each operator
-   if (indexOfPlus != -1) {
+   var operator;
+   
+   switch(operator) {
+    case'+':
+    {
       operatorIndex = indexOfPlus;
-      var a = parseFloat(expression.substring(0, operatorIndex));
-      var b = parseFloat(expression.substring(operatorIndex + 1));
       result = a + b;
+      var a = parseFloat(expression.substring(0, operatorIndex));
+      var b = parseFloat(expression.substring(operatorIndex + 1));
+      break;
+    }
+    case'-':
+    {
+      operatorIndex = indexOfPlus;
+      result = a + b;
+      var a = parseFloat(expression.substring(0, operatorIndex));
+      var b = parseFloat(expression.substring(operatorIndex + 1));
+      break;
+    }
 
-   } else if (indexOfMinus != -1) {
-      operatorIndex = indexOfMinus;
-      var a = parseFloat(expression.substring(0, operatorIndex));
-      var b = parseFloat(expression.substring(operatorIndex + 1));
-      result = a - b;
-   } else if (indexOfMultiply != -1) {
-      operatorIndex = indexOfMultiply;
-      var a = parseFloat(expression.substring(0, operatorIndex));
-      var b = parseFloat(expression.substring(operatorIndex + 1));
-      result = a * b;
-   } else if (indexOfDivide != -1) {
-      operatorIndex = indexOfDivide;
-      var a = parseFloat(expression.substring(0, operatorIndex));
-      var b = parseFloat(expression.substring(operatorIndex + 1));
-      result = a / b;
+    case'*':
+    {
+     operatorIndex = indexOfPlus;
+     result = a + b;
+     var a = parseFloat(expression.substring(0, operatorIndex));
+     var b = parseFloat(expression.substring(operatorIndex + 1));
+     break;
    }
-  
-   resultLabel.innerHTML = result;
+   case'/':
+    {
+    operatorIndex = indexOfPlus;
+    result = a + b;
+    var a = parseFloat(expression.substring(0, operatorIndex));
+    var b = parseFloat(expression.substring(operatorIndex + 1));
+    break;
+   }
+    resultLabel.innerHTML = result;
+
 }
+ 
+   resultLabel.innerHTML = result;
+} 
